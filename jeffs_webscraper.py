@@ -3,6 +3,10 @@ from bs4 import BeautifulSoup
 import re
 # from listing import Listing
 
+
+cat = ['EDUCATION', 'BUSINESS', 'DATING', 'SPORTS', 'WEATHER', 'FOOD_AND_DRINK', 'HEALTH_AND_FITNESS', 'BEAUTY', 'MUSIC_AND_AUDIO', 'NEWS_AND_MAGAZINES']
+
+
 class ListingBuilder:
     def run(self):
         cl = CraigsListScraper()
@@ -19,7 +23,7 @@ class ListingBuilder:
 
 
 class CraigsListScraper:
-    def webpage_html(self, url = 'https://play.google.com/store/apps/details?id=games.onebutton.golfbattle'):
+    def webpage_html(self, url = 'https://play.google.com/store/apps/category/SPORTS/collection/topselling_free'):
         craigslist_request = requests.get(url)
         self.craigslist_html = craigslist_request.text
         return self.craigslist_html
@@ -27,7 +31,7 @@ class CraigsListScraper:
     def listings_html(self, craigslist_html = None):
         craigslist_html = craigslist_html or self.craigslist_html
         craigslist_soup = BeautifulSoup(craigslist_html)
-        listings =  craigslist_soup.findAll('div', {'class':"LXrl4c"})
+        listings =  craigslist_soup.findAll('div', {'class':"id-card-list card-list two-cards"})
         self.listings = listings
         return self.listings
 
@@ -40,7 +44,7 @@ class ListingParser:
 
 
     def title(self):
-        return self.parse(self.listing_html, 'DWPxHb')
+        return self.parse(self.listing_html, 'subtitle')
 
 #     def location(self):
 #         return self.parse(self.listing_html, 'cui-location-name')
@@ -61,3 +65,5 @@ class ListingParser:
         result = listing_html.find(class_=re.compile(r'.*%s' % criteria))
         if result:
             return result.text
+        
+        
