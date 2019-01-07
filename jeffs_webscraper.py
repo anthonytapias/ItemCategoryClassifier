@@ -19,9 +19,6 @@ class ListingBuilder:
         return listings
 
 
-
-
-
 class CraigsListScraper:
     def webpage_html(self, url = 'https://play.google.com/store/apps/details?id=com.microsoft.office.lync15'):
         craigslist_request = requests.get(url)
@@ -46,20 +43,6 @@ class ListingParser:
     def title(self):
         return self.parse(self.listing_html, 'DWPxHb')
 
-#     def location(self):
-#         return self.parse(self.listing_html, 'cui-location-name')
-
-
-
-
-    # def housing(self):
-    #     housing = self.parse(self.listing_html, 'housing')
-        # if housing:
-        #     return housing.strip()
-
-    # def price(self, listings = None):
-    #     price = self.parse(self.listing_html, 'price')
-    #     return int(price[1:])
 
     def parse(self, listing_html, criteria):
         result = listing_html.find(class_=re.compile(r'.*%s' % criteria))
