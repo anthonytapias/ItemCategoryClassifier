@@ -6,12 +6,10 @@ For this project we decided to try and build a Machine Learning model that would
 ## Gathering and Cleaning The Data
 To gather data we built a webscrapper using Beautiful Soup (BS4) and scraped first the top 50 Free apps of 18 categories. Then we scraped each of the apps page and pulled the description of the application. After that we did a little EDA via doing a frequency word count and some word clouds. Seeing as this showed some repeated and common terms we then used NLTK to change all words to lower-case, to remove all punctuation using REGEX and to tokenize and stem them. Once that was done we joined each description again and we placed them and labeled them in a dataframe.
 
-## Building The Database
+## Models?
 
-## Constructing The Queries
+## Conclusions?
 
 ## Creating The Visualizations
-
-## Deployment
 
 ## Future Plans
